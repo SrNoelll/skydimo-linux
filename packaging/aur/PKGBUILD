@@ -1,5 +1,6 @@
 # Maintainer: Noel Alarcón (https://github.com/SrNoelll)
 pkgname=ambiluz
+_repo=skydimo-linux
 pkgver=1.0.0
 pkgrel=1
 pkgdesc="Skydimo monitor ambient light for Linux: screen sync (Wayland/X11), music mode and effects"
@@ -14,15 +15,15 @@ optdepends=('xdg-desktop-portal-kde: screen capture on KDE Plasma'
             'xdg-desktop-portal-wlr: screen capture on Sway and other wlroots compositors')
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('SKIP')
+sha256sums=('f06270fd276c769593b5dcacaa8a65a46a14b2e6f0c588f3c7e62fcfc08da31b')
 
 build() {
-  cd "$pkgname-$pkgver"
+  cd "$_repo-$pkgver"
   python -m build --wheel --no-isolation
 }
 
 package() {
-  cd "$pkgname-$pkgver"
+  cd "$_repo-$pkgver"
   python -m installer --destdir="$pkgdir" dist/*.whl
   install -Dm644 packaging/ambiluz.desktop "$pkgdir/usr/share/applications/ambiluz.desktop"
   install -Dm644 ambiluz/icon.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/ambiluz.svg"
