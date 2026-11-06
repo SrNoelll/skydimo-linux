@@ -69,7 +69,7 @@ curl -fsSL https://raw.githubusercontent.com/SrNoelll/skydimo-linux/main/install
 | 🏇 **Light chase (跑马灯)** | Horse race, Marquee, Comet, Scanner, Blocks. |
 | 🔌 **Plug & play** | Auto-detects the port and the **model** (asks the controller), reconnects if unplugged, survives suspend. |
 | 🛠 **Calibration** | "Identify sides", LED-by-LED sweep and RGB tests; direction, offset, color order, white balance, FPS. Custom layouts for any LED count. |
-| 🧰 **Desktop integration** | Tray icon, start on login, lights off when the screen locks or the PC sleeps, smooth fades, single instance, CLI. |
+| 🧰 **Desktop integration** | Tray icon, **starts with your PC by default** (one checkbox to turn it off), lights off when the screen locks or the PC sleeps, smooth fades, single instance, CLI. |
 | 🌍 **6 languages** | English, Español, 简体中文, 日本語, Русский, Français (automatic, or pick it in Settings). |
 
 ## 📸 Screenshots

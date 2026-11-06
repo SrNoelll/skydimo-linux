@@ -160,6 +160,23 @@ update-desktop-database "$APPS" >/dev/null 2>&1 || true
 gtk-update-icon-cache -q "${ICONS%/scalable/apps}" >/dev/null 2>&1 || true
 ok "Installed the app, menu entry and 'ambiluz' command"
 
+# Start on login (default). Respect a previous "autostart": false in the settings.
+AUTOSTART="$HOME/.config/autostart/ambiluz.desktop"
+if ! grep -q '"autostart": false' "$HOME/.config/ambiluz/config.json" 2>/dev/null; then
+  mkdir -p "$(dirname "$AUTOSTART")"
+  cat > "$AUTOSTART" <<EOF
+[Desktop Entry]
+Type=Application
+Name=Ambiluz
+Comment=Skydimo monitor ambient light
+Exec=$BIN/ambiluz --minimized
+Icon=ambiluz
+X-GNOME-Autostart-enabled=true
+X-KDE-autostart-after=panel
+EOF
+  ok "Ambiluz will start automatically on login (change it in Settings → System)"
+fi
+
 # --------------------------------------------------------------- serial access
 if [ "$UDEV" = 1 ] && [ ! -f "$UDEV_RULE" ]; then
   say "Serial port access"

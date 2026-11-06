@@ -1,7 +1,7 @@
 # Maintainer: Noel Alarcón (https://github.com/SrNoelll)
 pkgname=ambiluz
 _repo=skydimo-linux
-pkgver=1.0.0
+pkgver=1.0.1
 pkgrel=1
 pkgdesc="Skydimo monitor ambient light for Linux: screen sync (Wayland/X11), music mode and effects"
 arch=('any')

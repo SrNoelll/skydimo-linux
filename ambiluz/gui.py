@@ -429,6 +429,10 @@ class MainWindow(QMainWindow):
         self._tick()
         self._make_tray()
         self.refresh()
+        try:
+            set_autostart(bool(cfg["autostart"]))    # keep the login entry in sync
+        except OSError:
+            pass
 
     # ---------------------------------------------------------- páginas
     def _page_sync(self):
@@ -624,7 +628,7 @@ class MainWindow(QMainWindow):
             (_("Fotogramas/s"), self.b.slider("fps", 10, 45, lambda x: f"{x} fps")),
         ]))
 
-        v.addWidget(group(_("Sistema"), [
+        v.insertWidget(0, group(_("Sistema"), [
             self.b.check("autostart", _("Iniciar al encender el PC (en la bandeja)"),
                          on_change=self._autostart_changed),
             self.b.check("off_on_lock", _("Apagar las luces al bloquear la pantalla o suspender")),
@@ -818,6 +822,9 @@ def launcher_cmd():
     exe = shutil.which("ambiluz")
     if exe:
         return exe
+    local = os.path.expanduser("~/.local/bin/ambiluz")
+    if os.access(local, os.X_OK):
+        return local
     pkg_parent = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     return f"sh -c 'cd \"{pkg_parent}\" && exec {sys.executable} -m ambiluz \"$@\"' ambiluz"
 
@@ -830,7 +837,7 @@ def set_autostart(on):
         os.makedirs(os.path.dirname(AUTOSTART), exist_ok=True)
         with open(AUTOSTART, "w") as f:
             f.write("[Desktop Entry]\nType=Application\nName=Ambiluz\n"
-                    "Comment=Luces de monitor sincronizadas\n"
+                    "Comment=Skydimo monitor ambient light\n"
                     f"Exec={launcher_cmd()} --minimized\n"
                     "Icon=ambiluz\nX-GNOME-Autostart-enabled=true\nX-KDE-autostart-after=panel\n")
     else:

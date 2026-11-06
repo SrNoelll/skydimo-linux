@@ -57,9 +57,10 @@ DEFAULTS = {
     "race_reverse": False,
     # sistema
     "off_on_lock": True,
-    "autostart": False,
+    "autostart": True,
     "close_to_tray": True,
     "language": "auto",
+    "config_version": 2,
 }
 
 
@@ -76,6 +77,11 @@ class Config:
             for k, v in saved.items():
                 if k in DEFAULTS:
                     self.data[k] = v
+            if int(saved.get("config_version", 1)) < 2:
+                # v1.0.1: start on login became the default
+                self.data["autostart"] = True
+                self.data["config_version"] = 2
+                self.dirty = True
         except (OSError, ValueError):
             pass
 
