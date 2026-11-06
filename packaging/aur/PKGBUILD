@@ -15,7 +15,7 @@ optdepends=('xdg-desktop-portal-kde: screen capture on KDE Plasma'
             'xdg-desktop-portal-wlr: screen capture on Sway and other wlroots compositors')
 makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
 source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
-sha256sums=('f06270fd276c769593b5dcacaa8a65a46a14b2e6f0c588f3c7e62fcfc08da31b')
+sha256sums=('464c7085fe0882d3ccbc4f887c527a77eb367210c40dca863bd84fcf8a0d8f4f')
 
 build() {
   cd "$_repo-$pkgver"
