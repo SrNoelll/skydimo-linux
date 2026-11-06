@@ -1,0 +1,29 @@
+[Desktop Entry]
+Type=Application
+Name=Ambiluz
+GenericName=Monitor ambient light
+GenericName[es]=Luces de monitor
+GenericName[fr]=Éclairage d'ambiance pour écran
+GenericName[ru]=Подсветка монитора
+GenericName[zh_CN]=显示器氛围灯
+GenericName[ja]=モニター用アンビエントライト
+Comment=Skydimo LED strip: screen sync, music and effects
+Comment[es]=Tira LED Skydimo: sincronización con la pantalla, música y efectos
+Exec=ambiluz
+Icon=ambiluz
+Categories=Utility;Settings;HardwareSettings;
+Keywords=skydimo;ambilight;led;rgb;backlight;adalight;
+StartupNotify=false
+Actions=Toggle;Sync;Music;
+
+[Desktop Action Toggle]
+Name=On / Off
+Exec=ambiluz --toggle
+
+[Desktop Action Sync]
+Name=Screen sync
+Exec=ambiluz --mode sync
+
+[Desktop Action Music]
+Name=Music mode
+Exec=ambiluz --mode music

@@ -1,0 +1,40 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ambiluz"
+dynamic = ["version"]
+description = "Skydimo monitor ambient light for Linux: screen sync (Wayland & X11), music mode and effects"
+readme = "README.md"
+license = "GPL-3.0-or-later"
+requires-python = ">=3.9"
+authors = [{ name = "Noel Alarcón" }]
+keywords = ["skydimo", "ambilight", "ambient-light", "led", "rgb", "adalight", "wayland", "kde", "screen-sync"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: X11 Applications :: Qt",
+    "Intended Audience :: End Users/Desktop",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Topic :: Multimedia :: Graphics",
+    "Topic :: System :: Hardware",
+]
+# PyGObject + GStreamer must come from the distribution (see README).
+dependencies = ["PySide6>=6.5", "numpy>=1.22"]
+
+[project.urls]
+Homepage = "https://github.com/SrNoelll/skydimo-linux"
+Issues = "https://github.com/SrNoelll/skydimo-linux/issues"
+
+[project.scripts]
+ambiluz = "ambiluz.__main__:main"
+
+[tool.setuptools]
+packages = ["ambiluz", "ambiluz.locales"]
+
+[tool.setuptools.package-data]
+ambiluz = ["icon.svg"]
+
+[tool.setuptools.dynamic]
+version = { attr = "ambiluz.__version__" }

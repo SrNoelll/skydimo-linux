@@ -1,0 +1,36 @@
+name: Bug report
+description: Something does not work as expected
+labels: [bug]
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What did you do, what did you expect and what happened instead?
+    validations:
+      required: true
+  - type: textarea
+    id: probe
+    attributes:
+      label: Output of `ambiluz --probe`
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: status
+    attributes:
+      label: Output of `ambiluz --status` (while the app is running)
+      render: json
+  - type: input
+    id: distro
+    attributes:
+      label: Distribution and desktop
+      placeholder: e.g. Arch Linux, KDE Plasma 6.2 (Wayland)
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Terminal output
+      description: Run `ambiluz` from a terminal and paste any errors.
+      render: text

@@ -1,0 +1,31 @@
+# Maintainer: Noel Alarcón (https://github.com/SrNoelll)
+pkgname=ambiluz
+pkgver=1.0.0
+pkgrel=1
+pkgdesc="Skydimo monitor ambient light for Linux: screen sync (Wayland/X11), music mode and effects"
+arch=('any')
+url="https://github.com/SrNoelll/skydimo-linux"
+license=('GPL-3.0-or-later')
+depends=('python' 'pyside6' 'python-numpy' 'python-gobject' 'gstreamer' 'gst-plugins-base'
+         'gst-plugins-good' 'gst-plugin-pipewire' 'xdg-desktop-portal')
+optdepends=('xdg-desktop-portal-kde: screen capture on KDE Plasma'
+            'xdg-desktop-portal-gnome: screen capture on GNOME'
+            'xdg-desktop-portal-hyprland: screen capture on Hyprland'
+            'xdg-desktop-portal-wlr: screen capture on Sway and other wlroots compositors')
+makedepends=('python-build' 'python-installer' 'python-setuptools' 'python-wheel')
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=('SKIP')
+
+build() {
+  cd "$pkgname-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$pkgname-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+  install -Dm644 packaging/ambiluz.desktop "$pkgdir/usr/share/applications/ambiluz.desktop"
+  install -Dm644 ambiluz/icon.svg "$pkgdir/usr/share/icons/hicolor/scalable/apps/ambiluz.svg"
+  install -Dm644 packaging/60-ambiluz.rules "$pkgdir/usr/lib/udev/rules.d/60-ambiluz.rules"
+  install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
+}
